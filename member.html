@@ -158,10 +158,22 @@ h2{
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>画像表示サンプル</title>
+  <title>画像を50%サイズで表示</title>
+  <style>
+    .half-size {
+      width: 20%;      /* 親要素幅の20%に縮小 */
+      height: auto;    /* 高さは自動調整 */
+      display: block;
+      margin: 0 auto;  /* 中央寄せ */
+    }
+  </style>
 </head>
 <body>
-  <img src="https://cdn.phototourl.com/uploads/2026-02-26-e31952f2-31a3-433b-ab2c-34e970cc8804.png" alt="写真の説明文">
+  <img
+    class="half-size"
+    src="https://cdn.phototourl.com/uploads/2026-02-26-e31952f2-31a3-433b-ab2c-34e970cc8804.png"
+    alt="風景写真の説明文"
+  />
 </body>
 </html>
 
