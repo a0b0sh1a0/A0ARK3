@@ -1,1 +1,84 @@
-<div class="participant-list"><div class="participant"><img src="icon.png" alt="Participant Icon"><div class="name">John Doe</div><button class="modal-button" onclick="openModal('John Doe')">Show Links</button></div><!-- Repeat participant structure as needed --></div><div id="modal" class="modal"><div class="modal-content"><span class="close" onclick="closeModal()">&times;</span><h2>Select Links</h2><ul><li><a href="https://x.com">X</a></li><li><a href="https://youtube.com">YouTube</a></li><li><a href="https://twitch.tv">Twitch</a></li></ul></div></div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Participants</title>
+    <style>
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 20px;
+            margin: 20px;
+        }
+        .participant {
+            text-align: center;
+        }
+        .profile-img {
+            border-radius: 50%;
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            cursor: pointer;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgb(0,0,0);
+            background-color: rgba(0,0,0,0.4);
+        }
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+        }
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>Participants</h1>
+    <div class="grid">
+        <div class="participant">
+            <img class="profile-img" src="https://img.youtube.com/vi/YOUR_YOUTUBE_CHANNEL_ID/default.jpg" alt="YouTube Channel Image" onclick="openModal('channel1')">
+            <p>Participant 1</p>
+            <div id="channel1" class="modal">
+                <div class="modal-content">
+                    <span class="close" onclick="closeModal('channel1')">&times;</span>
+                    <p><a href="https://www.youtube.com/channel/YOUR_YOUTUBE_CHANNEL_ID">YouTube</a></p>
+                    <p><a href="https://twitter.com/YOUR_TWITTER_HANDLE">Twitter</a></p>
+                    <p><a href="https://www.twitch.tv/YOUR_TWITCH_HANDLE">Twitch</a></p>
+                </div>
+            </div>
+        </div>
+        <!-- Add more participants as needed -->
+    </div>
+
+    <script>
+        function openModal(channelId) {
+            document.getElementById(channelId).style.display = 'block';
+        }
+        function closeModal(channelId) {
+            document.getElementById(channelId).style.display = 'none';
+        }
+    </script>
+</body>
+</html>
