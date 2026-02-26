@@ -3,29 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Participants</title>
+    <title>Participant List</title>
+    <link rel="stylesheet" href="styles.css">
     <style>
         body {
             background-color: #121212;
-            color: white;
+            color: #ffffff;
             font-family: Arial, sans-serif;
         }
-        ul {
-            list-style-type: none;
-            padding: 0;
-        }
-        li {
+        .participant {
             display: flex;
             align-items: center;
             margin: 10px 0;
         }
-        img {
-            width: 100px;
-            height: auto;
+        .participant img {
+            width: 50px;
+            height: 50px;
             margin-right: 10px;
-            cursor: pointer;
         }
-        /* Modal styling */
         .modal {
             display: none;
             position: fixed;
@@ -54,40 +49,63 @@
         }
         .close:hover,
         .close:focus {
-            color: red;
+            color: black;
             text-decoration: none;
             cursor: pointer;
         }
     </style>
 </head>
 <body>
+    <h1>Participant List</h1>
+    <div id="participants"></div>
 
-    <h1>Participants</h1>
-    <ul>
-        <li>
-            <img src="channel_icon.png" alt="Channel Icon" onclick="openModal('https://youtube.com/channel/CHANNEL_ID')">
-            <span>Participant Name</span>
-        </li>
-        <!-- Add more participants here -->
-    </ul>
-
-    <!-- The Modal -->
     <div id="myModal" class="modal">
         <div class="modal-content">
-            <span class="close" onclick="closeModal()">&times;</span>
-            <iframe id="video" width="560" height="315" src="" frameborder="0" allowfullscreen></iframe>
+            <span class="close">&times;</span>
+            <p id="modal-text"></p>
         </div>
     </div>
 
     <script>
-        function openModal(videoUrl) {
-            document.getElementById('video').src = videoUrl;
-            document.getElementById('myModal').style.display = "block";
+        const apiKey = 'AIzaSyCiHxdEjo8drpumKBXnorkvXYUJYWkQ8ig';
+        const spreadsheetId = '1ngENWQQQtmKxmCTh-P7K1SBOF8LDcclD51hN16x9C1o';
+
+        async function fetchParticipants() {
+            const response = await fetch(`https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/Sheet1?key=${apiKey}`);
+            const data = await response.json();
+            const participants = data.values.slice(1);
+            displayParticipants(participants);
         }
-        function closeModal() {
-            document.getElementById('myModal').style.display = "none";
-            document.getElementById('video').src = "";
+
+        function displayParticipants(participants) {
+            const participantDiv = document.getElementById('participants');
+            participants.forEach((participant) => {
+                const participantRow = document.createElement('div');
+                participantRow.classList.add('participant');
+                participantRow.innerHTML = `<img src='${participant[1]}' alt='${participant[0]}'> <span>${participant[0]}</span>`;
+                participantRow.onclick = () => showModal(participant[6]); // Column G
+                participantDiv.appendChild(participantRow);
+            });
         }
+
+        function showModal(link) {
+            const modal = document.getElementById('myModal');
+            const modalText = document.getElementById('modal-text');
+            modalText.innerText = link;
+            modal.style.display = "block";
+
+            const span = document.getElementsByClassName("close")[0];
+            span.onclick = function() {
+                modal.style.display = "none";
+            }
+            window.onclick = function(event) {
+                if (event.target == modal) {
+                    modal.style.display = "none";
+                }
+            }
+        }
+
+        fetchParticipants();
     </script>
 </body>
 </html>
