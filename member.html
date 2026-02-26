@@ -187,136 +187,37 @@
     </div>
 
     <script>
-        const sheetsApiKey = 'AIzaSyCiHxdEjo8drpumKBXnorkvXYUJYWkQ8ig';
-        const youtubeApiKey = 'AIzaSyCiHxdEjo8drpumKBXnorkvXYUJYWkQ8ig';
-        const spreadsheetId = '1ngENWQQQtmKxmCTh-P7K1SBOF8LDcclD51hN16x9C1o';
-
-        // YouTubeチャンネルIDからプロフィール画像を取得
-        async function getYouTubeChannelImage(channelId) {
-            try {
-                const response = await fetch(
-                    `https://www.googleapis.com/youtube/v3/channels?part=snippet&id=${channelId}&key=${youtubeApiKey}`
-                );
-                const data = await response.json();
-                
-                if (data.items && data.items.length > 0) {
-                    return data.items[0].snippet.thumbnails.default.url;
-                }
-                return 'https://via.placeholder.com/80';
-            } catch (error) {
-                console.error(`Error fetching YouTube image for ${channelId}:`, error);
-                return 'https://via.placeholder.com/80';
-            }
-        }
-
+        // YouTube channel ID fetching has been removed.
         async function fetchParticipants() {
-            try {
-                const response = await fetch(
-                    `https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/Sheet1?key=${sheetsApiKey}`
-                );
-                const data = await response.json();
-                
-                if (!data.values) {
-                    throw new Error('No data found in spreadsheet');
-                }
-                
-                const participants = data.values.slice(1);
-                
-                // YouTubeチャンネルIDから画像を取得してからdisplay
-                await displayParticipants(participants);
-            } catch (error) {
-                console.error('Error fetching participants:', error);
-                document.getElementById('participants').innerHTML = 
-                    '<div class="error-message">参加者データを読み込めませんでした。APIキーとスプレッドシートIDを確認してください。</div>';
-            }
+            const response = await fetch(
+                `https://sheets.googleapis.com/v4/spreadsheets/1ngENWQQQtmKxmCTh-P7K1SBOF8LDcclD51hN16x9C1o/values/Sheet1?key=AIzaSyCiHxdEjo8drpumKBXnorkvXYUJYWkQ8ig`
+            );
+            const data = await response.json();
+            const participants = data.values.slice(1);
+            displayParticipants(participants);
         }
 
-        async function displayParticipants(participants) {
+        function displayParticipants(participants) {
             const participantDiv = document.getElementById('participants');
             participantDiv.innerHTML = '';
-            
             for (const participant of participants) {
                 const participantCard = document.createElement('div');
                 participantCard.classList.add('participant');
-                
-                const name = participant[0] || '名前なし';
-                const youtubeChannelId = participant[1] || '';
-                const xUrl = participant[2] || '';
-                const youtubeUrl = participant[3] || '';
-                const twitchUrl = participant[4] || '';
-                
-                // YouTubeチャンネルIDから画像を取得
-                let imageUrl = 'https://via.placeholder.com/80';
-                if (youtubeChannelId) {
-                    imageUrl = await getYouTubeChannelImage(youtubeChannelId);
-                }
-                
+                const name = participant[2] || '名前なし';
+                const imageUrl = 'https://via.placeholder.com/80?text=' + encodeURIComponent(name.substring(0, 2));
                 participantCard.innerHTML = `
-                    <img src="${imageUrl}" alt="${name}" onerror="this.src='https://via.placeholder.com/80'">
+                    <img src="${imageUrl}" alt="${name}">
                     <div class="participant-name">${name}</div>
                 `;
-                
-                participantCard.onclick = () => showModal(name, xUrl, youtubeUrl, twitchUrl);
                 participantDiv.appendChild(participantCard);
             }
-        }
-
-        function showModal(name, xUrl, youtubeUrl, twitchUrl) {
-            const modal = document.getElementById('myModal');
-            const modalTitle = document.getElementById('modal-title');
-            const linkButtonsDiv = document.getElementById('link-buttons');
-            
-            modalTitle.textContent = name;
-            linkButtonsDiv.innerHTML = '';
-            
-            // X (Twitter) Link
-            if (xUrl) {
-                const xButton = document.createElement('a');
-                xButton.href = xUrl;
-                xButton.target = '_blank';
-                xButton.rel = 'noopener noreferrer';
-                xButton.className = 'link-button twitter';
-                xButton.innerHTML = '<span class="icon">𝕏</span> Xで見る';
-                linkButtonsDiv.appendChild(xButton);
-            }
-            
-            // YouTube Link
-            if (youtubeUrl) {
-                const youtubeButton = document.createElement('a');
-                youtubeButton.href = youtubeUrl;
-                youtubeButton.target = '_blank';
-                youtubeButton.rel = 'noopener noreferrer';
-                youtubeButton.className = 'link-button youtube';
-                youtubeButton.innerHTML = '<span class="icon">▶</span> YouTubeで見る';
-                linkButtonsDiv.appendChild(youtubeButton);
-            }
-            
-            // Twitch Link
-            if (twitchUrl) {
-                const twitchButton = document.createElement('a');
-                twitchButton.href = twitchUrl;
-                twitchButton.target = '_blank';
-                twitchButton.rel = 'noopener noreferrer';
-                twitchButton.className = 'link-button twitch';
-                twitchButton.innerHTML = '<span class="icon">⚡</span> Twitchで見る';
-                linkButtonsDiv.appendChild(twitchButton);
-            }
-            
-            if (!xUrl && !youtubeUrl && !twitchUrl) {
-                linkButtonsDiv.innerHTML = '<p>リンク情報がまだ登録されていません</p>';
-            }
-            
-            modal.style.display = "block";
         }
 
         function closeModal() {
             document.getElementById('myModal').style.display = "none";
         }
 
-        // Close button
         document.querySelector('.close').onclick = closeModal;
-        
-        // Click outside modal to close
         window.onclick = function(event) {
             const modal = document.getElementById('myModal');
             if (event.target == modal) {
