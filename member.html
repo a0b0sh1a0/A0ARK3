@@ -1,56 +1,308 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Member Page</title>
-    <link rel="stylesheet" href="styles.css">
-    <script src="script.js" defer></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>参加者リスト</title>
+  <style>
+    :root {
+      --bg: #0b1020;
+      --card: #141a31;
+      --text: #e7e7f0;
+      --muted: #a6a6d1;
+      --accent: #4f9cff;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Noto Sans JP", sans-serif;
+      background: radial-gradient(circle at 20% -10%, rgba(79,156,255,0.15), transparent 40%),
+                  radial-gradient(circle at 90% 0%, rgba(255,165,0,0.15), transparent 40%),
+                  var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+    }
+    header {
+      padding: 20px;
+      text-align: center;
+    }
+    h1 {
+      margin: 0 0 6px;
+      font-size: 1.6rem;
+    }
+    p.subtitle {
+      margin: 0;
+      color: var(--muted);
+    }
+    main {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 0 16px 40px;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+      gap: 14px;
+    }
+    .card {
+      background: rgba(20,26,49,0.9);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 12px;
+      padding: 12px;
+      text-align: center;
+      position: relative;
+      transition: transform 0.2s ease;
+    }
+    .card:hover {
+      transform: translateY(-2px);
+      border-color: rgba(100,150,250,0.6);
+    }
+    .avatar {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      object-fit: cover;
+      display: inline-block;
+      margin-bottom: 8px;
+      background: #222;
+    }
+    .name {
+      font-size: 14px;
+      line-height: 1.2;
+      min-height: 34px;
+    }
+    .menu {
+      display: none;
+      position: absolute;
+      top: 6px;
+      left: 6px;
+      right: 6px;
+      bottom: 6px;
+      background: rgba(0,0,0,0.75);
+      border-radius: 10px;
+      padding: 8px;
+      backdrop-filter: blur(2px);
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      z-index: 5;
+    }
+    .card.show-menu .menu { display: flex; }
+    .btn {
+      padding: 8px 12px;
+      border: 1px solid rgba(255,255,255,0.25);
+      border-radius: 8px;
+      background: rgba(255,255,255,0.08);
+      color: #fff;
+      text-decoration: none;
+      font-size: 12px;
+      cursor: pointer;
+    }
+    .btn:hover {
+      background: rgba(255,255,255,0.16);
+    }
+    /* 小さなデバッグ用 */
+    .hint {
+      margin-top: 6px;
+      color: var(--muted);
+      font-size: 12px;
+      text-align: center;
+    }
+
+    /* レスポンシブ対応 */
+    @media (max-width: 520px) {
+      .avatar { width: 64px; height: 64px; }
+      .name { font-size: 13px; }
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Welcome to the Member Page</h1>
-        <div class="social-links">
-            <a href="https://www.example.com/x-link" target="_blank">X</a>
-            <a href="https://youtube.com/channel/UCXXXXX" target="_blank">YouTube</a>
-            <a href="https://twitch.tv/YourChannel" target="_blank">Twitch</a>
-        </div>
+  <header>
+    <h1>参加者リスト</h1>
+    <p class="subtitle">アイコンをクリックして、X / YouTube / Twitch のリンクを選択表示します。</p>
+  </header>
 
-        <button id="modalBtn">Open Modal</button>
+  <main>
+    <section id="participants" aria-label="参加者リスト" class="grid">
+      <!-- 動的に読み込まれます -->
+    </section>
+    <p class="hint" id="status">データを読み込み中です…</p>
+  </main>
 
-        <div id="myModal" class="modal">
-            <div class="modal-content">
-                <span class="close">&times;</span>
-                <h2>Modal Header</h2>
-                <p>Some text in the Modal..</p>
-            </div>
-        </div>
+  <!-- YouTube アイコンを表示するための小さな画像リファレンス -->
+  <!-- 必要に応じて assets/youtube.png を用意してください -->
+  <script>
+    // 設定
+    // スプレッドシートの公開 CSV URLを設定してください
+    // 例: https://docs.google.com/spreadsheets/d/XXXX/export?format=csv&gid=53811041
+    const CSV_URL = "https://docs.google.com/spreadsheets/d/185LnU0UW6p36zH2dldxEfKdb8WAQLvxZkyeJxHo6JUE/export?format=csv&gid=53811041";
 
-        <div class="placeholder-images">
-            <img src="https://via.placeholder.com/150" alt="Placeholder Image 1">
-            <img src="https://via.placeholder.com/150" alt="Placeholder Image 2">
-        </div>
-    </div>
+    // アイコン画像のURL
+    const YOUTUBE_IMG = "assets/youtube.png"; // プロジェクト内に画像を置く場合
+    // X/Twitch の代替アイコンURL（任意で設定）
+    const X_ICON = "https://image.flaticon.com/icons/png/512/124/124010.png"; // 公開URLの例
+    const TWITCH_ICON = "https://image.flaticon.com/icons/png/512/2111/2111652.png";
 
-    <script>
-        // Modal functionality
-        var modal = document.getElementById('myModal');
-        var btn = document.getElementById('modalBtn');
-        var span = document.getElementsByClassName('close')[0];
+    // DOM 要素
+    const container = document.getElementById('participants');
+    const statusEl = document.getElementById('status');
 
-        btn.onclick = function() {
-            modal.style.display = 'block';
+    // ヘルパー: CSV をパース
+    function parseCSV(text) {
+      // 単純なパーサー： CRLF/LF 行、カンマ区切り、値はダブルクオート対応
+      const rows = [];
+      const lines = text.split(/\r?\n/);
+      for (let i = 0; i < lines.length; i++) {
+        const line = lines[i];
+        if (!line.trim()) continue;
+        const values = [];
+        let cur = '';
+        let inQ = false;
+        for (let j = 0; j < line.length; j++) {
+          const ch = line[j];
+          if (ch === '"') {
+            if (inQ && line[j+1] === '"') { cur += '"'; j++; } else { inQ = !inQ; }
+          } else if (ch === ',' && !inQ) {
+            values.push(cur);
+            cur = '';
+          } else {
+            cur += ch;
+          }
         }
+        values.push(cur);
+        rows.push(values);
+      }
+      return rows;
+    }
 
-        span.onclick = function() {
-            modal.style.display = 'none';
-        }
+    // データの整形: A列～F列
+    // 行0はヘッダ行の想定を回避するため、実データは from 1
+    function toRecord(row) {
+      // row indices: 0:A,1:B,2:C,3:D,4:E,5:F
+      return {
+        surnameKana: row<a href="" class="citation-link" target="_blank" style="vertical-align: super; font-size: 0.8em; margin-left: 3px;">[0]</a> || '',
+        givenKana: row<a href="" class="citation-link" target="_blank" style="vertical-align: super; font-size: 0.8em; margin-left: 3px;">[1]</a> || '',
+        name: row<a href="" class="citation-link" target="_blank" style="vertical-align: super; font-size: 0.8em; margin-left: 3px;">[2]</a> || '',
+        xUrl: row<a href="" class="citation-link" target="_blank" style="vertical-align: super; font-size: 0.8em; margin-left: 3px;">[3]</a> || '',
+        youtubeUrl: row<a href="" class="citation-link" target="_blank" style="vertical-align: super; font-size: 0.8em; margin-left: 3px;">[4]</a> || '',
+        twitchUrl: row<a href="" class="citation-link" target="_blank" style="vertical-align: super; font-size: 0.8em; margin-left: 3px;">[5]</a> || ''
+      };
+    }
 
-        window.onclick = function(event) {
-            if (event.target == modal) {
-                modal.style.display = 'none';
-            }
-        }
-    </script>
+    // 名前のソートキーを作成
+    function sortKey(rec) {
+      // A列(名字仮名) + B列(名前仮名)
+      // すでに五十音順を前提としている場合の補助キーとして用いる
+      return (rec.surnameKana + rec.givenKana).toLowerCase();
+    }
+
+    // 画像要素作成
+    function createCard(rec) {
+      // 名前表示：姓+名の読み仮名を結合または実名表示を使い分け
+      const displayName = rec.name || (rec.surnameKana + rec.givenKana);
+
+      const card = document.createElement('div');
+      card.className = 'card';
+      // コンテンツ
+      const img = document.createElement('img');
+      img.className = 'avatar';
+      // アイコン画像は YouTube アイコンを参照するとの要望なので、ダミーは YouTube 画像を使用
+      // 実務では個別のアバター画像URLを列に追加するか、デフォルト画像を用意してください
+      img.src = "https://i.imgur.com/6K3y3S9.png"; // デフォルトの丸アイコン（任意のURLに差し替え可）
+      img.alt = "アイコン";
+
+      const nameEl = document.createElement('div');
+      nameEl.className = 'name';
+      nameEl.textContent = displayName;
+
+      // ドロップダウン用のメニュー
+      const menu = document.createElement('div');
+      menu.className = 'menu';
+      // ボタン: X
+      if (rec.xUrl) {
+        const btnX = document.createElement('a');
+        btnX.href = rec.xUrl;
+        btnX.className = 'btn';
+        btnX.target = '_blank';
+        btnX.rel = 'noopener';
+        btnX.textContent = 'X';
+        menu.appendChild(btnX);
+      }
+      // YouTube
+      if (rec.youtubeUrl) {
+        const btnYT = document.createElement('a');
+        btnYT.href = rec.youtubeUrl;
+        btnYT.className = 'btn';
+        btnYT.target = '_blank';
+        btnYT.rel = 'noopener';
+        btnYT.textContent = 'YouTube';
+        menu.appendChild(btnYT);
+      }
+      // Twitch
+      if (rec.twitchUrl) {
+        const btnTW = document.createElement('a');
+        btnTW.href = rec.twitchUrl;
+        btnTW.className = 'btn';
+        btnTW.target = '_blank';
+        btnTW.rel = 'noopener';
+        btnTW.textContent = 'Twitch';
+        menu.appendChild(btnTW);
+      }
+
+      // クリックでメニューを表示/非表示
+      card.addEventListener('click', (e) => {
+        // クリックがアイコン画像上か名前の部分かを判定する簡易実装
+        // すべてのカードでドロップダウンを開閉
+        card.classList.toggle('show-menu');
+      });
+
+      // 構成
+      card.appendChild(img);
+      card.appendChild(nameEl);
+      card.appendChild(menu);
+      return card;
+    }
+
+    // CSV を取得して表示
+    function loadAndRender() {
+      fetch(CSV_URL)
+        .then(res => {
+          if (!res.ok) throw new Error('CSV の取得に失敗しました');
+          return res.text();
+        })
+        .then(text => {
+          // ヘッダ行をスキップ
+          const rows = parseCSV(text);
+          // 期待する列数が不足している場合は適宜対応
+          const records = rows
+            .filter(r => r.length >= 6)
+            .map(toRecord);
+
+          // 五十音順ソート
+          records.sort((a, b) => {
+            const ka = sortKey(a);
+            const kb = sortKey(b);
+            if (ka < kb) return -1;
+            if (ka > kb) return 1;
+            return 0;
+          });
+
+          // DOM に追加
+          records.forEach(rec => {
+            const el = createCard(rec);
+            container.appendChild(el);
+          });
+
+          statusEl.textContent = `参加者: ${records.length} 名`;
+        })
+        .catch(err => {
+          console.error(err);
+          statusEl.textContent = 'データの読み込みに失敗しました';
+        });
+    }
+
+    // 実行
+    document.addEventListener('DOMContentLoaded', loadAndRender);
+  </script>
 </body>
 </html>
