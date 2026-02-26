@@ -3,24 +3,62 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Participants</title>
+    <title>Participant List</title>
+    <link rel="stylesheet" href="styles.css">
     <style>
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-            gap: 20px;
-            margin: 20px;
+        body {
+            background-color: #121212;
+            color: #ffffff;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
         }
-        .participant {
+
+        h1 {
             text-align: center;
+            margin-bottom: 40px;
         }
-        .profile-img {
-            border-radius: 50%;
-            width: 100px;
-            height: 100px;
-            object-fit: cover;
+
+        #participants {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            gap: 30px;
+            justify-items: center;
+        }
+
+        .participant {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
             cursor: pointer;
+            transition: transform 0.2s;
         }
+
+        .participant:hover {
+            transform: scale(1.1);
+        }
+
+        .participant img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin-bottom: 10px;
+            object-fit: cover;
+            border: 2px solid #ffffff;
+        }
+
+        .participant-name {
+            text-align: center;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 20px;
+            color: #888;
+        }
+
         .modal {
             display: none;
             position: fixed;
@@ -30,55 +68,263 @@
             width: 100%;
             height: 100%;
             overflow: auto;
-            background-color: rgb(0,0,0);
-            background-color: rgba(0,0,0,0.4);
+            background-color: rgba(0, 0, 0, 0.8);
+            padding-top: 60px;
         }
+
         .modal-content {
-            background-color: #fefefe;
-            margin: 15% auto;
-            padding: 20px;
-            border: 1px solid #888;
-            width: 80%;
+            background-color: #2a2a2a;
+            margin: 5% auto;
+            padding: 30px;
+            border: 1px solid #444;
+            width: 90%;
+            max-width: 400px;
+            border-radius: 8px;
         }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .modal-header h2 {
+            margin: 0;
+            color: #ffffff;
+        }
+
         .close {
             color: #aaa;
-            float: right;
             font-size: 28px;
             font-weight: bold;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 0;
         }
+
         .close:hover,
         .close:focus {
-            color: black;
-            text-decoration: none;
+            color: #ffffff;
+        }
+
+        .link-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .link-button {
+            padding: 12px 16px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
             cursor: pointer;
+            transition: background-color 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .link-button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .link-button.twitter {
+            background-color: #1DA1F2;
+            color: white;
+        }
+
+        .link-button.twitter:hover:not(:disabled) {
+            background-color: #1a91da;
+        }
+
+        .link-button.youtube {
+            background-color: #FF0000;
+            color: white;
+        }
+
+        .link-button.youtube:hover:not(:disabled) {
+            background-color: #cc0000;
+        }
+
+        .link-button.twitch {
+            background-color: #9146FF;
+            color: white;
+        }
+
+        .link-button.twitch:hover:not(:disabled) {
+            background-color: #7c3aed;
+        }
+
+        .icon {
+            font-size: 20px;
+        }
+
+        .error-message {
+            color: #ff6b6b;
+            text-align: center;
+            padding: 20px;
         }
     </style>
 </head>
 <body>
-    <h1>Participants</h1>
-    <div class="grid">
-        <div class="participant">
-            <img class="profile-img" src="https://img.youtube.com/vi/YOUR_YOUTUBE_CHANNEL_ID/default.jpg" alt="YouTube Channel Image" onclick="openModal('channel1')">
-            <p>Participant 1</p>
-            <div id="channel1" class="modal">
-                <div class="modal-content">
-                    <span class="close" onclick="closeModal('channel1')">&times;</span>
-                    <p><a href="https://www.youtube.com/channel/YOUR_YOUTUBE_CHANNEL_ID">YouTube</a></p>
-                    <p><a href="https://twitter.com/YOUR_TWITTER_HANDLE">Twitter</a></p>
-                    <p><a href="https://www.twitch.tv/YOUR_TWITCH_HANDLE">Twitch</a></p>
-                </div>
+    <h1>参加者一覧 - Ark Survival Ascended</h1>
+    <div id="participants" class="loading">読み込み中...</div>
+
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modal-title">参加者情報</h2>
+                <button class="close">&times;</button>
             </div>
+            <div class="link-buttons" id="link-buttons"></div>
         </div>
-        <!-- Add more participants as needed -->
     </div>
 
     <script>
-        function openModal(channelId) {
-            document.getElementById(channelId).style.display = 'block';
+        const sheetsApiKey = 'AIzaSyCiHxdEjo8drpumKBXnorkvXYUJYWkQ8ig';
+        const youtubeApiKey = 'AIzaSyCiHxdEjo8drpumKBXnorkvXYUJYWkQ8ig';
+        const spreadsheetId = '1ngENWQQQtmKxmCTh-P7K1SBOF8LDcclD51hN16x9C1o';
+
+        // YouTubeチャンネルIDからプロフィール画像を取得
+        async function getYouTubeChannelImage(channelId) {
+            try {
+                const response = await fetch(
+                    `https://www.googleapis.com/youtube/v3/channels?part=snippet&id=${channelId}&key=${youtubeApiKey}`
+                );
+                const data = await response.json();
+                
+                if (data.items && data.items.length > 0) {
+                    return data.items[0].snippet.thumbnails.default.url;
+                }
+                return 'https://via.placeholder.com/80';
+            } catch (error) {
+                console.error(`Error fetching YouTube image for ${channelId}:`, error);
+                return 'https://via.placeholder.com/80';
+            }
         }
-        function closeModal(channelId) {
-            document.getElementById(channelId).style.display = 'none';
+
+        async function fetchParticipants() {
+            try {
+                const response = await fetch(
+                    `https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/Sheet1?key=${sheetsApiKey}`
+                );
+                const data = await response.json();
+                
+                if (!data.values) {
+                    throw new Error('No data found in spreadsheet');
+                }
+                
+                const participants = data.values.slice(1);
+                
+                // YouTubeチャンネルIDから画像を取得してからdisplay
+                await displayParticipants(participants);
+            } catch (error) {
+                console.error('Error fetching participants:', error);
+                document.getElementById('participants').innerHTML = 
+                    '<div class="error-message">参加者データを読み込めませんでした。APIキーとスプレッドシートIDを確認してください。</div>';
+            }
         }
+
+        async function displayParticipants(participants) {
+            const participantDiv = document.getElementById('participants');
+            participantDiv.innerHTML = '';
+            
+            for (const participant of participants) {
+                const participantCard = document.createElement('div');
+                participantCard.classList.add('participant');
+                
+                const name = participant[0] || '名前なし';
+                const youtubeChannelId = participant[1] || '';
+                const xUrl = participant[2] || '';
+                const youtubeUrl = participant[3] || '';
+                const twitchUrl = participant[4] || '';
+                
+                // YouTubeチャンネルIDから画像を取得
+                let imageUrl = 'https://via.placeholder.com/80';
+                if (youtubeChannelId) {
+                    imageUrl = await getYouTubeChannelImage(youtubeChannelId);
+                }
+                
+                participantCard.innerHTML = `
+                    <img src="${imageUrl}" alt="${name}" onerror="this.src='https://via.placeholder.com/80'">
+                    <div class="participant-name">${name}</div>
+                `;
+                
+                participantCard.onclick = () => showModal(name, xUrl, youtubeUrl, twitchUrl);
+                participantDiv.appendChild(participantCard);
+            }
+        }
+
+        function showModal(name, xUrl, youtubeUrl, twitchUrl) {
+            const modal = document.getElementById('myModal');
+            const modalTitle = document.getElementById('modal-title');
+            const linkButtonsDiv = document.getElementById('link-buttons');
+            
+            modalTitle.textContent = name;
+            linkButtonsDiv.innerHTML = '';
+            
+            // X (Twitter) Link
+            if (xUrl) {
+                const xButton = document.createElement('a');
+                xButton.href = xUrl;
+                xButton.target = '_blank';
+                xButton.rel = 'noopener noreferrer';
+                xButton.className = 'link-button twitter';
+                xButton.innerHTML = '<span class="icon">𝕏</span> Xで見る';
+                linkButtonsDiv.appendChild(xButton);
+            }
+            
+            // YouTube Link
+            if (youtubeUrl) {
+                const youtubeButton = document.createElement('a');
+                youtubeButton.href = youtubeUrl;
+                youtubeButton.target = '_blank';
+                youtubeButton.rel = 'noopener noreferrer';
+                youtubeButton.className = 'link-button youtube';
+                youtubeButton.innerHTML = '<span class="icon">▶</span> YouTubeで見る';
+                linkButtonsDiv.appendChild(youtubeButton);
+            }
+            
+            // Twitch Link
+            if (twitchUrl) {
+                const twitchButton = document.createElement('a');
+                twitchButton.href = twitchUrl;
+                twitchButton.target = '_blank';
+                twitchButton.rel = 'noopener noreferrer';
+                twitchButton.className = 'link-button twitch';
+                twitchButton.innerHTML = '<span class="icon">⚡</span> Twitchで見る';
+                linkButtonsDiv.appendChild(twitchButton);
+            }
+            
+            if (!xUrl && !youtubeUrl && !twitchUrl) {
+                linkButtonsDiv.innerHTML = '<p>リンク情報がまだ登録されていません</p>';
+            }
+            
+            modal.style.display = "block";
+        }
+
+        function closeModal() {
+            document.getElementById('myModal').style.display = "none";
+        }
+
+        // Close button
+        document.querySelector('.close').onclick = closeModal;
+        
+        // Click outside modal to close
+        window.onclick = function(event) {
+            const modal = document.getElementById('myModal');
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+
+        fetchParticipants();
     </script>
 </body>
 </html>
