@@ -88,14 +88,14 @@ h2{
   margin-top:8px;
   font-weight:bold;
   font-size:13px;
-  white-space:nowrap;
+  white-space:nowrap; /* allow wrapping */
   color:#000;
   text-shadow:
     -1px -1px 0 #fff,
      1px -1px 0 #fff,
     -1px  1px 0 #fff,
      1px  1px 0 #fff;
-  単語区切り: 単語区切り; /長い単語でも折り返す場合は推奨 */
+  word-break: break-word; /* break long words if needed */ 
 }
  
 .modal-overlay{
