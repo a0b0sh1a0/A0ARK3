@@ -12,7 +12,7 @@ body{
   margin:0;
   font-family:Arial,sans-serif;
   min-height:100vh;
-  background:linear-gradient(135deg,#007BFF,#A070FF,#FF70B3,#FF8C00,#800080);
+  background:url("A0ARK3.png") center/cover no-repeat;
   overflow-x:hidden;
 }
 
@@ -134,6 +134,7 @@ h2{
 }
 
 .youtube{ background:#ff0000; }
+.twitch{ background:#9146FF; }
 .twitter{ background:#000; }
 .lit{ background:#9494f8; }
 
@@ -151,6 +152,8 @@ h2{
 
 <body>
 
+<a href="about.html" class="about-floating">このサイトについて</a>
+
 <h1>Ａ０ＡＲＫ３</h1>
 
 <h2>【主催】</h2>
@@ -166,62 +169,62 @@ h2{
 <script>
 
 const mainMembers = [
-{name:"【企画】青星あお",icon:"https://yt3.googleusercontent.com/oqaUt7-ZtU0OMqfxfuNpi5LGXMkP8qkYIr7xzXswizBh-JbLc__DCAtbYpKDTpumFgmLXXFI=s160-c-k-c0x00ffffff-no-rj",youtube:"https://www.youtube.com/@A0B0SH1",twitter:"https://x.com/A0B0SH1",lit:"https://lit.link/a0B0sh1"},
-{name:"【窓口】胡蝶レイ",icon:"https://yt3.googleusercontent.com/V10KyYstx5PtaDSN8LYosSR6htCRW5mv8Pv3fofw5w5GWV0D-59ghE2IS67_i5S4D7-QlGoV=s160-c-k-c0x00ffffff-no-rj",youtube:"https://www.youtube.com/@kochourei",twitter:"https://x.com/kochorei",lit:"https://lit.link/kochourei"},
-{name:"【窓口】猫戸ネル",icon:"https://yt3.googleusercontent.com/9LtaLCK-1zoaees0JNS2cNcdfdu-glV4Mvt9aK7hLsLdRMpvaaDVUxi5rvBTI6FOzJ_jbyTOaQ=s160-c-k-c0x00ffffff-no-rj",youtube:"https://www.youtube.com/@nek0t0_neru",twitter:"https://x.com/nek0t0neru_zzz",lit:"https://lit.link/nekotoneru"},
-{name:"【管理】三柴ミスケ",icon:"https://yt3.googleusercontent.com/6bP7nOXok4H-VPHxrTs6e8TlEllNMFCF3kfB0_M5643zvsoxS1b5Xj5cnEXEIQ9JluUvSQc1CQ=s160-c-k-c0x00ffffff-no-rj",youtube:"https://www.youtube.com/@mimisuke",twitter:"https://x.com/cafe_bergamot",lit:""},
-{name:"【発案】宵星遊",icon:"https://yt3.googleusercontent.com/WHThOu5DgUIUd6meAW_wiuz2prbyHSzYA8OSyqSoPuEEv_LB7zxPH1Mx-vSH-lhYSKFjpFQSsQ=s160-c-k-c0x00ffffff-no-rj",youtube:"https://www.youtube.com/@Yoiboshi_Yu",twitter:"https://x.com/Yoiboshi_Yu",lit:"https://lit.link/YoiboshiYu"}
+{name:"【企画】青星あお",icon:"https://yt3.googleusercontent.com/oqaUt7-ZtU0OMqfxfuNpi5LGXMkP8qkYIr7xzXswizBh-JbLc__DCAtbYpKDTpumFgmLXXFI=s160-c-k-c0x00ffffff-no-rj",youtube:"https://www.youtube.com/@A0B0SH1",twitch:"https://www.twitch.tv/a0b0sh1",twitter:"https://x.com/A0B0SH1",lit:"https://lit.link/a0B0sh1"},
+{name:"【窓口】胡蝶レイ",icon:"https://yt3.googleusercontent.com/V10KyYstx5PtaDSN8LYosSR6htCRW5mv8Pv3fofw5w5GWV0D-59ghE2IS67_i5S4D7-QlGoV=s160-c-k-c0x00ffffff-no-rj",youtube:"https://www.youtube.com/@kochourei",twitch:"https://www.twitch.tv/kochourei",twitter:"https://x.com/kochorei",lit:"https://lit.link/kochourei"},
+{name:"【窓口】猫戸ネル",icon:"https://yt3.googleusercontent.com/9LtaLCK-1zoaees0JNS2cNcdfdu-glV4Mvt9aK7hLsLdRMpvaaDVUxi5rvBTI6FOzJ_jbyTOaQ=s160-c-k-c0x00ffffff-no-rj",youtube:"https://www.youtube.com/@nek0t0_neru",twitch:"https://www.twitch.tv/nek0t0neru_zzz",twitter:"https://x.com/nek0t0neru_zzz",lit:"https://lit.link/nekotoneru"},
+{name:"【管理】三柴ミスケ",icon:"https://yt3.googleusercontent.com/6bP7nOXok4H-VPHxrTs6e8TlEllNMFCF3kfB0_M5643zvsoxS1b5Xj5cnEXEIQ9JluUvSQc1CQ=s160-c-k-c0x00ffffff-no-rj",youtube:"https://www.youtube.com/@mimisuke",twitch:"https://www.twitch.tv/mimisuke1222",twitter:"https://x.com/cafe_bergamot",lit:""},
+{name:"【発案】宵星遊",icon:"https://yt3.googleusercontent.com/WHThOu5DgUIUd6meAW_wiuz2prbyHSzYA8OSyqSoPuEEv_LB7zxPH1Mx-vSH-lhYSKFjpFQSsQ=s160-c-k-c0x00ffffff-no-rj",youtube:"https://www.youtube.com/@Yoiboshi_Yu",twitch:"https://www.twitch.tv/yoiboshi_yu",twitter:"https://x.com/Yoiboshi_Yu",lit:"https://lit.link/YoiboshiYu"}
 ];
 
 const joinMembers=[
-{name:"朱音りん",icon:"https://yt3.googleusercontent.com/i2Ol4zT8uRwcQ8uhdjAKEv-_db5bgBVzOC9MydlfrmGSIzZJJ5oK-NdTmLVyePASTgg0Rbn4eA=s160-c-k-c0x00ffffff-no-rj",youtube:"https://www.youtube.com/@_AkaneRin_",twitter:"https://x.com/_AkaneRin_"},
-{name:"芥虎々美子",icon:"https://yt3.googleusercontent.com/_A6M1Aln4iCCJyfDtz5quyxnhBMs7Lkyg-PpmAP15FIEPznWt__74CLlHK_31Rhf_Cu8UVIJ=s160-c-k-c0x00ffffff-no-rj",youtube:"https://www.youtube.com/@kokomiko_a22",twitter:"https://x.com/kokomiko_a22"},
-{name:"天辻るくす",icon:"https://yt3.googleusercontent.com/TJQS__-fWVxXfD58mXjO_I-i1ktMGtaj5bWMj4gtze-CH9VFUJF0nDWYLVtRn-FRububcHarkw=s160-c-k-c0x00ffffff-no-rj",youtube:"https://www.youtube.com/@amatsujilux",twitter:"https://x.com/amatsujilux"},
-{name:"雨ノ詠ツユ",icon:"https://yt3.googleusercontent.com/Adj33mxU7dE92eyRRb7BIMH66JlrlHJBOrIpqlClRW8k6I2EbSxekbxyqTgRwf_oqJGTS_TZ3OA=s160-c-k-c0x00ffffff-no-rj",youtube:"https://www.youtube.com/@amenouta24",twitter:"https://x.com/amenouta24"},
-{name:"Vi",icon:"https://yt3.googleusercontent.com/D5gZV6ci4xwpfnM0k0oYAnL9TGViI9NWx-NECeAOAda0sWIC7wrnBUjxJoPNbyiGRvL0EvSh=s160-c-k-c0x00ffffff-no-rj",youtube:"https://www.youtube.com/@Vi_VTuber_JP/featured",twitter:"https://x.com/Vi_VTuer"},
-{name:"潤主アシュリ",icon:"https://yt3.googleusercontent.com/qht0w_-NmWbrIN8ChXW4z5gYA71ij-4G6-AnKo4PvgMLtu18TPpwgPUBgUrwMh6aaDZ4Sl2Msw4=s160-c-k-c0x00ffffff-no-rj",youtube:"https://www.youtube.com/@urusu_ashli",twitter:"https://x.com/urusu_ashli"},
-{name:"尾前くう",icon:"https://yt3.googleusercontent.com/DJTGYDKv5wY89lkEE6nzhsGhA6MZ_hnlzgFy9Y47L5t5DNC2Ievm7kQaAdWNKhW_KZGI6ryD=s160-c-k-c0x00ffffff-no-rj",youtube:"https://www.youtube.com/@Omaekuu",twitter:"https://x.com/0mae_kuu"},
-{name:"燎莉ロン",icon:"https://yt3.googleusercontent.com/tDOqttgKH6guKUo8nfQLObZh6I1OjhyV6tTnguFQMmQ8Bke1STZpsFY5kocw9Phb0kOP9_cFHbY=s160-c-k-c0x00ffffff-no-rj",youtube:"https://www.youtube.com/@Kagari_Ron",twitter:"https://x.com/Kagari_Ron"},
-{name:"風切アヤト",icon:"https://yt3.googleusercontent.com/IjE2IC4SNs_wdeqN1g37OIxz_Qzo4zInVl5OLv2qjKbrVNoAEPbXMQ7FHKVCBjoV6o-6ZaW2DlE=s160-c-k-c0x00ffffff-no-rj",youtube:"https://www.youtube.com/@Kazagiri_Ayato",twitter:"https://x.com/kazagiri_ayato"},
-{name:"風車ひまり",icon:"https://yt3.googleusercontent.com/ratqjMn06Up8J9XNXsFCLEn-1U9ggjyWm8sNueV1kewwnnRD8wwf_Rdx75Jw7T0YT7NPRWXnrA=s160-c-k-c0x00ffffff-no-rj",youtube:"https://www.youtube.com/@%E9%A2%A8%E8%BB%8A%E3%81%B2%E3%81%BE%E3%82%8A",twitter:"https://x.com/hi_kazaguruma"},
-{name:"菓子野コトナ",icon:"https://yt3.googleusercontent.com/1j7w2-ZL0pLKI4K55M0qIa3673B6aU8THUR3bY5N-_r9v09TpMY5a0AjjtwGvuq6Gr1-j53G=s160-c-k-c0x00ffffff-no-rj",youtube:"https://www.youtube.com/@kotona_song",twitter:"https://x.com/kotona_song"},
-{name:"神凪誠士",icon:"https://yt3.googleusercontent.com/O3vmfqFTo1F-037Cd6y86Gm5WMpEPF2RPXHEX9TEuer25T6p7NIlgo7YLR4yjmS0l6dOeTWyag=s160-c-k-c0x00ffffff-no-rj",youtube:"https://www.youtube.com/@kannagi_seizi",twitter:"https://x.com/seizi_kannagi"},
-{name:"如月ヴァン",icon:"https://yt3.googleusercontent.com/s3FXxBmkrvagWFZhb1Y8qqiMADV64Wsox2M8JKWR4o86i5ZDL6dqKvjCef98E3z9KqLZf7ghTNI=s160-c-k-c0x00ffffff-no-rj",youtube:"https://www.youtube.com/@kisaragi_van",twitter:"https://x.com/kisaragi_van"},
-{name:"黄ノ瀬オブリ",icon:"https://yt3.googleusercontent.com/7iZke3rE-7m_duWommP4CR-igJBguNPVkJ0oEK2wnS99sM4eMsKbSlIb5xCBMCF4XLxMOwmRYj0=s160-c-k-c0x00ffffff-no-rj",youtube:"https://www.youtube.com/@obu_youtube",twitter:"https://x.com/obbli_kinose"},
-{name:"虎鈴ととら",icon:"https://yt3.googleusercontent.com/11n8u8jC-yKD_s83NgsNX9TBBPujKStUWzQc7Z_CFb8NdSt33WmDgQkmyj9D1DpXFcFfqdPP=s160-c-k-c0x00ffffff-no-rj",youtube:"https://www.youtube.com/@kosuzu_totora",twitter:"https://x.com/KosuzuTotora"},
-{name:"狐森吟",icon:"https://yt3.googleusercontent.com/sz7ENhSla6tu7SxK_vTH_Cy02AP8ms4zhvHuwvenD5cOt-mop6f52bLKLKbk5zLbzVk8kP_kVMY=s160-c-k-c0x00ffffff-no-rj",youtube:"https://www.youtube.com/@%E3%81%93%E3%82%82%E3%82%8A%E3%81%8E%E3%82%93",twitter:"https://x.com/komori_gin"},
-{name:"紺瀬のあ",icon:"https://yt3.googleusercontent.com/h9al_3hzhnLaP_LqsCTtyHCdx-7aYBB_9h1akJiL6FrnmWjOW4JhHnionEggS0MlN1Tm2JJW_d4=s160-c-k-c0x00ffffff-no-rj",youtube:"https://www.youtube.com/@%E7%B4%BA%E7%80%AC%E3%81%AE%E3%81%82",twitter:"https://x.com/konsenoah"},
-{name:"シェイド・グレイシア",icon:"https://yt3.googleusercontent.com/OWgRic0kxL761xO5IKEqvXt4NkIVs9EXwb5w8nDJFTG4aq-zQ0e2SwMVYC6-tA2OoWtOo9-e=s160-c-k-c0x00ffffff-no-rj",youtube:"https://www.youtube.com/@ShadeGlacia",twitter:"https://x.com/ShadeGlacia"},
-{name:"シノウサギ",icon:"https://yt3.googleusercontent.com/8dNoB9oV9hlIx2ahsT63baAT0fe5flDRrUs0Cy3PxK6rDmIYdARciiVVlzFS-X7Ob_PDPRcQHw=s160-c-k-c0x00ffffff-no-rj",youtube:"youtube.com/@shinousagi_dayo",twitter:"x.com/shinousagi_dayo"},
-{name:"神童ゆづる",icon:"https://yt3.googleusercontent.com/u7gvotA8xEYt0jHnkSwPcB1C1nWjS1yTVAxqm4Q5PJWZkJFn7dJfGaD_7R-JRxHXUP3B0_wLAA=s160-c-k-c0x00ffffff-no-rj",youtube:"https://www.youtube.com/@SindoYuzuru/streams",twitter:"https://x.com/yzrowo"},
-{name:"清白ヨルイチ",icon:"https://yt3.googleusercontent.com/zsQpM5Eac3GDk6fZ6OrbrulMDE5xOf3YGhJxwqFyPQQ5eKfw7LSjoF45l2CmOIZbjZ7AwEq0=s160-c-k-c0x00ffffff-no-rj",youtube:"https://www.youtube.com/@suzushiroyoruichi2663",twitter:"https://x.com/1234_imuna"},
-{name:"蒼龍すばる",icon:"https://yt3.googleusercontent.com/uBcS4oC6IAMCKxts9aPTnvGWQEa3qw9QjckM_L0TyPZa-Mmoj2e9ewudCYyfRZvGqkHj1mhS=s160-c-k-c0x00ffffff-no-rj",youtube:"https://www.youtube.com/@aosuba0807",twitter:"https://x.com/aosuba0807"},
-{name:"月白刻人",icon:"https://yt3.googleusercontent.com/5311v91Q7LgEjzw5ZMt3N2OtnJH-l2SVCTlR4iCbfyNWyw9BDvUXUKDOsySf0ZV_vrSIXw5d=s160-c-k-c0x00ffffff-no-rj",youtube:"https://www.youtube.com/@TsukishiroKKT",twitter:"https://x.com/Kokuto_Moon"},
-{name:"月城美雪",icon:"https://yt3.googleusercontent.com/d5YrGd3_V3zuG8YvtiZ9bIzH5wYgLjHq6AgM6m4j3Y4nmWJg_ha7TsLURHjUp8DaQZEtQgEM3w8=s160-c-k-c0x00ffffff-no-rj",youtube:"https://www.youtube.com/@tsukishiro_miyuki",twitter:"https://x.com/miyuki_vtuber_"},
-{name:"鼓星ペテル",icon:"https://yt3.googleusercontent.com/fMRTnpTR_BlkbWoX5ikm-1V0XdtRzgtBQ28c3R3Ev5WHvOgDXxYn8-L-lSA1-8ZZvbC_pBTjEfU=s160-c-k-c0x00ffffff-no-rj",youtube:"https://www.youtube.com/@Petel125",twitter:"https://x.com/Petel125"},
-{name:"天海ぷらね",icon:"https://yt3.googleusercontent.com/xv0UrvMKjSKcIA6U9-24bBw4rIn49WeAIGZAhucZ4y-ec9gT7pDfs_T_lFouLbVfbuGfHW_Y=s160-c-k-c0x00ffffff-no-rj",youtube:"https://www.youtube.com/@TenkaiPurane",twitter:"https://x.com/tenkai_purane"},
-{name:"凪アレン",icon:"https://static-cdn.jtvnw.net/jtv_user_pictures/2d20004c-7e22-4338-ad57-310143baad04-profile_image-70x70.png",youtube:"",twitter:"https://x.com/nagi_allen"},
-{name:"名切蓮太郎",icon:"https://yt3.googleusercontent.com/hjb5GgtbwIXosGxz1QSmEdYBs2mbY65x0D82jyE-MHxuihI5jq1T62yCwhVoak23IJrlfsWDKyc=s160-c-k-c0x00ffffff-no-rj",youtube:"https://www.youtube.com/@Nakiri-Hasutarou_VT",twitter:"https://x.com/nakiri_hasutaro"},
-{name:"ノイフライブルク",icon:"https://yt3.googleusercontent.com/XKnGl0lhGsf75AmLmqc_2yuYf83yLpPCiA-QnZgZ3BscmgFh-2slGT-d4Njb9mBjdZLIPYey=s160-c-k-c0x00ffffff-no-rj",youtube:"https://www.youtube.com/@neufreiburg",twitter:"https://x.com/neufreiburg"},
-{name:"後世ふゆう",icon:"https://yt3.googleusercontent.com/Pg49O-jDXVJv7peR5uvjPEcprfVJIZxj2bD8wTjBBpclHUYeVYX_uhuaDkzTaEDtmh8MTzZm=s160-c-k-c0x00ffffff-no-rj",youtube:"https://www.youtube.com/@ncnyfuyu",twitter:"https://x.com/ncny_fy0"},
-{name:"爆丸サルボ",icon:"https://yt3.googleusercontent.com/NVrooo-4BSyYcue4T2TM1k4Z9S7_Pk-Wwqb-Oo_uTd_sArlpiiymW14nosbEiTtKwTMffd_z=s160-c-k-c0x00ffffff-no-rj",youtube:"https://www.youtube.com/@Salvoman",twitter:"https://x.com/Salvoman_VT"},
-{name:"花服夏着",icon:"https://yt3.googleusercontent.com/ytc/AIdro_mbPsvb2Iam52u5He8-LOFSxcX6bkL1-FrdZYADSCwAXg=s160-c-k-c0x00ffffff-no-rj",youtube:"https://www.youtube.com/@hanahulu",twitter:"https://x.com/dtto16?s=09"},
-{name:"春霞",icon:"https://yt3.googleusercontent.com/GZ5NYS4fZFjelFy8rozbZPiHlEzVUWwnottiuXnaHjr79TRuH-F4Rhxnmd9AR57djD9XjUWRWw=s160-c-k-c0x00ffffff-no-rj",youtube:"https://www.youtube.com/@harukasumi1015",twitter:"https://x.com/sunny0_sideup"},
-{name:"燈桜メリア",icon:"https://yt3.googleusercontent.com/xlfIj6xbG1UOqCkH2_vpO3K5y7SxZAzNuOoy0QhWkx1fpfdT-ApVVncaTnqNpxMV0O48GWxrIw=s160-c-k-c0x00ffffff-no-rj",youtube:"https://www.youtube.com/@HizakuraMelia",twitter:"https://x.com/melia_hizakura"},
-{name:"ブルハ・ブルチ",icon:"https://yt3.googleusercontent.com/Z8oyfK9-yCdQe_36aqWGhy9rAYJKw2Z7DhsjgKOOO_rFMmyF7SdzuFfNkLYFpT_3QSG4awGFyw=s160-c-k-c0x00ffffff-no-rj",youtube:"https://www.youtube.com/c/buruchiCH",twitter:"https://x.com/buruchi0201"},
-{name:"文福しゃのめ",icon:"https://yt3.googleusercontent.com/a-mONVLjQg_eutnfg1xDtxui0XkKu4gBqYaJcO5EeC0VYjRk5PmBHrnmv7AGigtMQAqH9327njo=s160-c-k-c0x00ffffff-no-rj",youtube:"https://www.youtube.com/@bunpukusyanome",twitter:"https://x.com/bunpukusyanome"},
-{name:"北斎ナミウラ",icon:"https://yt3.googleusercontent.com/x_z7_s78DPDSD4prv-yw_hkMiWenlrGz_WVeufkQ3bacVCCi1pwLMkXX04Q09UN44qJeNX1BdQ=s160-c-k-c0x00ffffff-no-rj",youtube:"https://www.youtube.com/@Hokusai_Namiura",twitter:"https://x.com/Hoksai_Namiura"},
-{name:"マシュー・キングスレイ",icon:"https://yt3.googleusercontent.com/HzsQX9vscaXEzd1BgsSR_5xFXEQMJ_U48skAXpGOW-noJvIl-IYIVKvk-cGKGUv0AGRAhBFmuDo=s160-c-k-c0x00ffffff-no-rj",youtube:"https://www.youtube.com/@matthewkngsly",twitter:"https://x.com/matthewkngsly"},
-{name:"真城ななる",icon:"https://yt3.googleusercontent.com/VPwXmL0-IRw7uvhmDm-pdaK-PLuW6rcLAPZ8DpgOYzLjT8zsjGyGx7zhyfI4mS8ek-Df7aTA=s160-c-k-c0x00ffffff-no-rj",youtube:"https://www.youtube.com/@NanaruMashiro",twitter:"https://x.com/nanaru_mashiro"},
-{name:"招来ロア",icon:"https://yt3.googleusercontent.com/QZsdMkJXPlFUuUgcuzsjZlUxCbLMfeAIX7M0UDluOPScJdTZZciuG2ZX59m2ncOYJcXwuM4Pkw=s160-c-k-c0x00ffffff-no-rj",youtube:"https://www.youtube.com/@roa_maneki",twitter:"https://x.com/roa_maneki"},
-{name:"水乃契",icon:"https://yt3.googleusercontent.com/EFwyD1VoRzl2aPqkx5k7fHbKHT4U1-0eMzfBuSFEtsOkrrcYGPImvF2o-2Jjb4hoLVdw2RX7ug=s160-c-k-c0x00ffffff-no-rj",youtube:"https://www.youtube.com/@chigiri_mizuno",twitter:"https://x.com/chigiri_mizuno"},
-{name:"満月まひろ",icon:"https://yt3.googleusercontent.com/5DpG2kRErO2YgJQTeb-FfyPC9MVzpugjiU2dFrI7gpvSDSCg-3zIpnCtNc1COJCjyNcGXUDS=s160-c-k-c0x00ffffff-no-rj",youtube:"https://www.youtube.com/@Mahiro_Mitsuki",twitter:"https://x.com/Mahiro_Mitsuki"},
-{name:"夢兎のん",icon:"https://yt3.googleusercontent.com/3fDUnVmU2izP5lHEQo6U0dURh3gUULk32PQ7sNmhlu7evdZkzKsqKB5GZEsRgiE7h5CILllTTg=s160-c-k-c0x00ffffff-no-rj",youtube:"https://www.youtube.com/@yumeto__non",twitter:"https://x.com/yumeto__non"},
-{name:"夢中ちょん",icon:"https://yt3.googleusercontent.com/IVvBcopdwHxoFcI5pIZB1Ip5y9k_MoulXNGs73Wom2OF-g2YeWWxAIm2JqmFdk9-laUk_gmO=s160-c-k-c0x00ffffff-no-rj",youtube:"https://www.youtube.com/@Yumenaka_Chon",twitter:"https://x.com/yumenaka_chon"},
-{name:"緩瀬ゆに",icon:"https://yt3.googleusercontent.com/jgXe7INxVduyiyPt37vT2Mb_HibLxZHXKZ4oZMAl-yhWrUf2zdQk6enIkXJpxmheGgsOpw8d=s160-c-k-c0x00ffffff-no-rj",youtube:"https://www.youtube.com/@-yuruseyuni-",twitter:"https://x.com/yun1yuruse"},
-{name:"葉竜らぷる",icon:"https://yt3.googleusercontent.com/FXv2bRJ3mf78w9gvVDyGVs9OiLdoOjxJcuE71voVVYU9hj6Mzya1bUevlbACAJ2ZG4bRflaTK0Y=s160-c-k-c0x00ffffff-no-rj",youtube:"https://www.youtube.com/@YouryuRapuru33",twitter:"https://x.com/YouryuRapuru33"},
-{name:"ライザ・フォン・ガルファンゼール16世",icon:"https://yt3.googleusercontent.com/nF7UwczspIv7p0mXSVzdJYCKrRbAwcr-sX7cQFcOg121d87OkyPwvytGYCpka1AVQQvtX26PtQ=s160-c-k-c0x00ffffff-no-rj",youtube:"https://www.youtube.com/@LizaChannel16",twitter:"https://x.com/Liza_16sugoi"},
-{name:"麗月鏡華",icon:"https://yt3.googleusercontent.com/GT3R1NZaxrS1X4l0Au8bpgfAGXkux9cstTFv3RyZ01IIXiCrZChjw2XeNaoY2L9q58vsH5g_=s160-c-k-c0x00ffffff-no-rj",youtube:"https://www.youtube.com/@Reigetsu_Kyouka",twitter:"https://x.com/Reigetsu_Kyouka"},
+{name:"朱音りん",icon:"https://yt3.googleusercontent.com/i2Ol4zT8uRwcQ8uhdjAKEv-_db5bgBVzOC9MydlfrmGSIzZJJ5oK-NdTmLVyePASTgg0Rbn4eA=s160-c-k-c0x00ffffff-no-rj",youtube:"https://www.youtube.com/@_AkaneRin_",twitch:"",twitter:"https://x.com/_AkaneRin_",lit:"https://lit.link/akanerin"}, 
+{name:"芥虎々美子",icon:"https://yt3.googleusercontent.com/_A6M1Aln4iCCJyfDtz5quyxnhBMs7Lkyg-PpmAP15FIEPznWt__74CLlHK_31Rhf_Cu8UVIJ=s160-c-k-c0x00ffffff-no-rj",youtube:"https://www.youtube.com/@kokomiko_a22",twitch:"",twitter:"https://x.com/kokomiko_a22",lit:"https://lit.link/kokomiko22"},
+{name:"天辻るくす",icon:"https://yt3.googleusercontent.com/TJQS__-fWVxXfD58mXjO_I-i1ktMGtaj5bWMj4gtze-CH9VFUJF0nDWYLVtRn-FRububcHarkw=s160-c-k-c0x00ffffff-no-rj",youtube:"https://www.youtube.com/@amatsujilux",twitch:"https://www.twitch.tv/amatsujilux",twitter:"https://x.com/amatsujilux",lit:"https://lit.link/lux22"},
+{name:"雨ノ詠ツユ",icon:"https://yt3.googleusercontent.com/Adj33mxU7dE92eyRRb7BIMH66JlrlHJBOrIpqlClRW8k6I2EbSxekbxyqTgRwf_oqJGTS_TZ3OA=s160-c-k-c0x00ffffff-no-rj",youtube:"https://www.youtube.com/@amenouta24",twitch:"https://www.twitch.tv/amenouta24",twitter:"https://x.com/amenouta24",lit:"https://lit.link/amenouta24"},
+{name:"Vi",icon:"https://yt3.googleusercontent.com/D5gZV6ci4xwpfnM0k0oYAnL9TGViI9NWx-NECeAOAda0sWIC7wrnBUjxJoPNbyiGRvL0EvSh=s160-c-k-c0x00ffffff-no-rj",youtube:"https://www.youtube.com/@Vi_Vibre_JP",twitch:"",twitter:"https://x.com/Vi_VTuer",lit:""},
+{name:"潤主アシュリ",icon:"https://yt3.googleusercontent.com/qht0w_-NmWbrIN8ChXW4z5gYA71ij-4G6-AnKo4PvgMLtu18TPpwgPUBgUrwMh6aaDZ4Sl2Msw4=s160-c-k-c0x00ffffff-no-rj",youtube:"https://www.youtube.com/@urusu_ashli",twitch:"https://www.twitch.tv/urusu_ashli",twitter:"https://x.com/urusu_ashli",lit:"https://lit.link/urusuashli"},
+{name:"尾前くう",icon:"https://yt3.googleusercontent.com/DJTGYDKv5wY89lkEE6nzhsGhA6MZ_hnlzgFy9Y47L5t5DNC2Ievm7kQaAdWNKhW_KZGI6ryD=s160-c-k-c0x00ffffff-no-rj",youtube:"https://www.youtube.com/@Omaekuu",twitch:"https://www.twitch.tv/omaekuu",twitter:"https://x.com/0mae_kuu",lit:"https://lit.link/0maekuu"},
+{name:"燎莉ロン",icon:"https://yt3.googleusercontent.com/tDOqttgKH6guKUo8nfQLObZh6I1OjhyV6tTnguFQMmQ8Bke1STZpsFY5kocw9Phb0kOP9_cFHbY=s160-c-k-c0x00ffffff-no-rj",youtube:"https://www.youtube.com/@Kagari_Ron",twitch:"https://www.twitch.tv/kagari_ron",twitter:"https://x.com/Kagari_Ron",lit:"https://lit.link/KagariRon"},
+{name:"風切アヤト",icon:"https://yt3.googleusercontent.com/IjE2IC4SNs_wdeqN1g37OIxz_Qzo4zInVl5OLv2qjKbrVNoAEPbXMQ7FHKVCBjoV6o-6ZaW2DlE=s160-c-k-c0x00ffffff-no-rj",youtube:"https://www.youtube.com/@Kazagiri_Ayato",twitch:"https://www.twitch.tv/kazagiri_ayato",twitter:"https://x.com/kazagiri_ayato",lit:"https://lit.link/KazagiriAyato"},
+{name:"風車ひまり",icon:"https://yt3.googleusercontent.com/ratqjMn06Up8J9XNXsFCLEn-1U9ggjyWm8sNueV1kewwnnRD8wwf_Rdx75Jw7T0YT7NPRWXnrA=s160-c-k-c0x00ffffff-no-rj",youtube:"https://www.youtube.com/channel/UCvEYutoYNTb1eQFSChskLfg",twitch:"https://www.twitch.tv/hima_guruma",twitter:"https://x.com/hi_kazaguruma",lit:"https://lit.link/guruma"},
+{name:"菓子野コトナ",icon:"https://yt3.googleusercontent.com/1j7w2-ZL0pLKI4K55M0qIa3673B6aU8THUR3bY5N-_r9v09TpMY5a0AjjtwGvuq6Gr1-j53G=s160-c-k-c0x00ffffff-no-rj",youtube:"https://www.youtube.com/@kotona_song",twitch:"",twitter:"https://x.com/kotona_song",lit:"https://lit.link/kashinokotona"},
+{name:"神凪誠士",icon:"https://yt3.googleusercontent.com/O3vmfqFTo1F-037Cd6y86Gm5WMpEPF2RPXHEX9TEuer25T6p7NIlgo7YLR4yjmS0l6dOeTWyag=s160-c-k-c0x00ffffff-no-rj",youtube:"https://www.youtube.com/@kannagi_seizi",twitch:"",twitter:"https://x.com/seizi_kannagi",lit:"https://lit.link/seizikannagi"},
+{name:"如月ヴァン",icon:"https://yt3.googleusercontent.com/s3FXxBmkrvagWFZhb1Y8qqiMADV64Wsox2M8JKWR4o86i5ZDL6dqKvjCef98E3z9KqLZf7ghTNI=s160-c-k-c0x00ffffff-no-rj",youtube:"https://www.youtube.com/@kisaragi_van",twitch:"",twitter:"https://x.com/kisaragi_van",lit:""},
+{name:"黄ノ瀬オブリ",icon:"https://yt3.googleusercontent.com/7iZke3rE-7m_duWommP4CR-igJBguNPVkJ0oEK2wnS99sM4eMsKbSlIb5xCBMCF4XLxMOwmRYj0=s160-c-k-c0x00ffffff-no-rj",youtube:"https://www.youtube.com/@obu_youtube",twitch:"https://www.twitch.tv/obu131",twitter:"https://x.com/obbli_kinose",lit:"https://lit.link/obblikinose"},
+{name:"虎鈴ととら",icon:"https://yt3.googleusercontent.com/11n8u8jC-yKD_s83NgsNX9TBBPujKStUWzQc7Z_CFb8NdSt33WmDgQkmyj9D1DpXFcFfqdPP=s160-c-k-c0x00ffffff-no-rj",youtube:"https://www.youtube.com/@kosuzu_totora",twitch:"https://www.twitch.tv/kosuzutotora",twitter:"https://x.com/KosuzuTotora",lit:"https://lit.link/totora1010"},
+{name:"狐森吟",icon:"https://yt3.googleusercontent.com/sz7ENhSla6tu7SxK_vTH_Cy02AP8ms4zhvHuwvenD5cOt-mop6f52bLKLKbk5zLbzVk8kP_kVMY=s160-c-k-c0x00ffffff-no-rj",youtube:"https://www.youtube.com/channel/UCEJbmOJlGdCmvtvoUtJLSdA",twitch:"https://www.twitch.tv/komorigin",twitter:"https://x.com/komori_gin",lit:""},
+{name:"紺瀬のあ",icon:"https://yt3.googleusercontent.com/h9al_3hzhnLaP_LqsCTtyHCdx-7aYBB_9h1akJiL6FrnmWjOW4JhHnionEggS0MlN1Tm2JJW_d4=s160-c-k-c0x00ffffff-no-rj",youtube:"https://www.youtube.com/channel/UCQisxdmlsppZvXOxpgIRGvA",twitch:"https://www.twitch.tv/konsenoah",twitter:"https://x.com/konsenoah",lit:"https://lit.link/konsenoah"},
+{name:"シェイド・グレイシア",icon:"https://yt3.googleusercontent.com/OWgRic0kxL761xO5IKEqvXt4NkIVs9EXwb5w8nDJFTG4aq-zQ0e2SwMVYC6-tA2OoWtOo9-e=s160-c-k-c0x00ffffff-no-rj",youtube:"https://www.youtube.com/@ShadeGlaciai",twitch:"https://www.twitch.tv/shadeglacia",twitter:"https://x.com/ShadeGlacia",lit:""},
+{name:"シノウサギ",icon:"https://yt3.googleusercontent.com/8dNoB9oV9hlIx2ahsT63baAT0fe5flDRrUs0Cy3PxK6rDmIYdARciiVVlzFS-X7Ob_PDPRcQHw=s160-c-k-c0x00ffffff-no-rj",youtube:"https://www.youtube.com/@shinousagi_dayo",twitch:"",twitter:"https://x.com/shinousagi_dayo",lit:""},
+{name:"神童ゆづる",icon:"https://yt3.googleusercontent.com/u7gvotA8xEYt0jHnkSwPcB1C1nWjS1yTVAxqm4Q5PJWZkJFn7dJfGaD_7R-JRxHXUP3B0_wLAA=s160-c-k-c0x00ffffff-no-rj",youtube:"https://www.youtube.com/@SindoYuzuru",twitch:"https://www.twitch.tv/yuzurunowo",twitter:"https://x.com/yzrowo",lit:""},
+{name:"清白ヨルイチ",icon:"https://yt3.googleusercontent.com/zsQpM5Eac3GDk6fZ6OrbrulMDE5xOf3YGhJxwqFyPQQ5eKfw7LSjoF45l2CmOIZbjZ7AwEq0=s160-c-k-c0x00ffffff-no-rj",youtube:"https://www.youtube.com/@suzushiroyoruichi2663",twitch:"https://www.twitch.tv/yoruichi114",twitter:"https://x.com/1234_imuna",lit:""},
+{name:"蒼龍すばる",icon:"https://yt3.googleusercontent.com/uBcS4oC6IAMCKxts9aPTnvGWQEa3qw9QjckM_L0TyPZa-Mmoj2e9ewudCYyfRZvGqkHj1mhS=s160-c-k-c0x00ffffff-no-rj",youtube:"https://www.youtube.com/@aosuba0807",twitch:"https://www.twitch.tv/aosuba0807",twitter:"https://x.com/aosuba0807",lit:"https://lit.link/aosuba0807"},
+{name:"月白刻人",icon:"https://yt3.googleusercontent.com/5311v91Q7LgEjzw5ZMt3N2OtnJH-l2SVCTlR4iCbfyNWyw9BDvUXUKDOsySf0ZV_vrSIXw5d=s160-c-k-c0x00ffffff-no-rj",youtube:"https://www.youtube.com/@TsukishiroKKT",twitch:"https://www.twitch.tv/tsukishirokokuto",twitter:"https://x.com/Kokuto_Moon",lit:""},
+{name:"月城美雪",icon:"https://yt3.googleusercontent.com/d5YrGd3_V3zuG8YvtiZ9bIzH5wYgLjHq6AgM6m4j3Y4nmWJg_ha7TsLURHjUp8DaQZEtQgEM3w8=s160-c-k-c0x00ffffff-no-rj",youtube:"https://www.youtube.com/@tsukishiro_miyuki",twitch:"https://www.twitch.tv/t_miyuki",twitter:"https://x.com/miyuki_vtuber_",lit:"https://lit.link/miyukitsukishiro"},
+{name:"鼓星ペテル",icon:"https://yt3.googleusercontent.com/fMRTnpTR_BlkbWoX5ikm-1V0XdtRzgtBQ28c3R3Ev5WHvOgDXxYn8-L-lSA1-8ZZvbC_pBTjEfU=s160-c-k-c0x00ffffff-no-rj",youtube:"https://www.youtube.com/channel/UCYPxxzP5cfBC83M8yDBHShw",twitch:"https://www.twitch.tv/tudumiboshipetel",twitter:"https://x.com/Petel125",lit:""},
+{name:"天海ぷらね",icon:"https://yt3.googleusercontent.com/xv0UrvMKjSKcIA6U9-24bBw4rIn49WeAIGZAhucZ4y-ec9gT7pDfs_T_lFouLbVfbuGfHW_Y=s160-c-k-c0x00ffffff-no-rj",youtube:"https://www.youtube.com/@TenkaiPurane",twitch:"https://www.twitch.tv/tenkai_purane",twitter:"https://x.com/tenkai_purane",lit:"https://lit.link/TenkaiPurane"},
+{name:"凪アレン",icon:"https://static-cdn.jtvnw.net/jtv_user_pictures/2d20004c-7e22-4338-ad57-310143baad04-profile_image-70x70.png",youtube:"",twitch:"https://www.twitch.tv/nagi_allen",twitter:"https://x.com/nagi_allen",lit:""},
+{name:"名切蓮太郎",icon:"https://yt3.googleusercontent.com/hjb5GgtbwIXosGxz1QSmEdYBs2mbY65x0D82jyE-MHxuihI5jq1T62yCwhVoak23IJrlfsWDKyc=s160-c-k-c0x00ffffff-no-rj",youtube:"https://www.youtube.com/@Nakiri-Hasutarou_VT",twitch:"https://www.twitch.tv/nakiri_hasutarou",twitter:"https://x.com/nakiri_hasutaro",lit:"https://lit.link/Nkiri843"},
+{name:"ノイ・フライブルク",icon:"https://yt3.googleusercontent.com/XKnGl0lhGsf75AmLmqc_2yuYf83yLpPCiA-QnZgZ3BscmgFh-2slGT-d4Njb9mBjdZLIPYey=s160-c-k-c0x00ffffff-no-rj",youtube:"https://www.youtube.com/@neufreiburg",twitch:"https://www.twitch.tv/neufreiburg",twitter:"https://x.com/neufreiburg",lit:"https://lit.link/neufreiburg"},
+{name:"後世ふゆう",icon:"https://yt3.googleusercontent.com/Pg49O-jDXVJv7peR5uvjPEcprfVJIZxj2bD8wTjBBpclHUYeVYX_uhuaDkzTaEDtmh8MTzZm=s160-c-k-c0x00ffffff-no-rj",youtube:"https://www.youtube.com/@ncnyfuyu",twitch:"https://www.twitch.tv/ncnyfuyu",twitter:"https://x.com/ncny_fy0",lit:"https://lit.link/ncnyfuyu"},
+{name:"爆丸サルボ",icon:"https://yt3.googleusercontent.com/NVrooo-4BSyYcue4T2TM1k4Z9S7_Pk-Wwqb-Oo_uTd_sArlpiiymW14nosbEiTtKwTMffd_z=s160-c-k-c0x00ffffff-no-rj",youtube:"https://www.youtube.com/@salvoman",twitch:"",twitter:"https://x.com/Salvoman_VT",lit:""},
+{name:"花服夏着",icon:"https://yt3.googleusercontent.com/ytc/AIdro_mbPsvb2Iam52u5He8-LOFSxcX6bkL1-FrdZYADSCwAXg=s160-c-k-c0x00ffffff-no-rj",youtube:"https://www.youtube.com/@hanahulu",twitch:"",twitter:"https://x.com/dtto16",lit:""},
+{name:"春霞",icon:"https://yt3.googleusercontent.com/GZ5NYS4fZFjelFy8rozbZPiHlEzVUWwnottiuXnaHjr79TRuH-F4Rhxnmd9AR57djD9XjUWRWw=s160-c-k-c0x00ffffff-no-rj",youtube:"https://www.youtube.com/@harukasumi1015",twitch:"https://www.twitch.tv/sunny0_sideup",twitter:"https://x.com/sunny0_sideup",lit:"https://lit.link/harukasumi1015"},
+{name:"燈桜メリア",icon:"https://yt3.googleusercontent.com/xlfIj6xbG1UOqCkH2_vpO3K5y7SxZAzNuOoy0QhWkx1fpfdT-ApVVncaTnqNpxMV0O48GWxrIw=s160-c-k-c0x00ffffff-no-rj",youtube:"https://www.youtube.com/@HizakuraMelia",twitch:"https://www.twitch.tv/hizakuramelia",twitter:"https://x.com/melia_hizakura",lit:"https://lit.link/HizakuraMelia"},
+{name:"ブルハ・ブルチ",icon:"https://yt3.googleusercontent.com/Z8oyfK9-yCdQe_36aqWGhy9rAYJKw2Z7DhsjgKOOO_rFMmyF7SdzuFfNkLYFpT_3QSG4awGFyw=s160-c-k-c0x00ffffff-no-rj",youtube:"https://www.youtube.com/@buruchiCH",twitch:"https://www.twitch.tv/buruchi_vtuber",twitter:"https://x.com/buruchi0201",lit:""},
+{name:"文福しゃのめ",icon:"https://yt3.googleusercontent.com/a-mONVLjQg_eutnfg1xDtxui0XkKu4gBqYaJcO5EeC0VYjRk5PmBHrnmv7AGigtMQAqH9327njo=s160-c-k-c0x00ffffff-no-rj",youtube:"https://www.youtube.com/@bunpukusyanome",twitch:"https://www.twitch.tv/bunpuku_syanome",twitter:"https://x.com/bunpukusyanome",lit:"https://lit.link/bunpukusyanome"},
+{name:"北斎ナミウラ",icon:"https://yt3.googleusercontent.com/x_z7_s78DPDSD4prv-yw_hkMiWenlrGz_WVeufkQ3bacVCCi1pwLMkXX04Q09UN44qJeNX1BdQ=s160-c-k-c0x00ffffff-no-rj",youtube:"https://www.youtube.com/@Hokusai_Namiura",twitch:"https://www.twitch.tv/hoksai_namiura",twitter:"https://x.com/Hoksai_Namiura",lit:"https://lit.link/Namiura"},
+{name:"マシュー・キングスレイ",icon:"https://yt3.googleusercontent.com/HzsQX9vscaXEzd1BgsSR_5xFXEQMJ_U48skAXpGOW-noJvIl-IYIVKvk-cGKGUv0AGRAhBFmuDo=s160-c-k-c0x00ffffff-no-rj",youtube:"https://www.youtube.com/@matthewkngsly",twitch:"https://www.twitch.tv/matthewkngsly",twitter:"https://x.com/matthewkngsly",lit:"https://lit.link/matthewkingsley"},
+{name:"真城ななる",icon:"https://yt3.googleusercontent.com/VPwXmL0-IRw7uvhmDm-pdaK-PLuW6rcLAPZ8DpgOYzLjT8zsjGyGx7zhyfI4mS8ek-Df7aTA=s160-c-k-c0x00ffffff-no-rj",youtube:"https://www.youtube.com/@NanaruMashiro",twitch:"https://www.twitch.tv/nnrm77",twitter:"https://x.com/nanaru_mashiro",lit:""},
+{name:"招来ロア",icon:"https://yt3.googleusercontent.com/QZsdMkJXPlFUuUgcuzsjZlUxCbLMfeAIX7M0UDluOPScJdTZZciuG2ZX59m2ncOYJcXwuM4Pkw=s160-c-k-c0x00ffffff-no-rj",youtube:"https://www.youtube.com/@roa_maneki",twitch:"https://www.twitch.tv/roa_maneki",twitter:"https://x.com/roa_maneki",lit:""},
+{name:"水乃契",icon:"https://yt3.googleusercontent.com/EFwyD1VoRzl2aPqkx5k7fHbKHT4U1-0eMzfBuSFEtsOkrrcYGPImvF2o-2Jjb4hoLVdw2RX7ug=s160-c-k-c0x00ffffff-no-rj",youtube:"https://www.youtube.com/@chigiri_mizuno",twitch:"https://www.twitch.tv/chigiri_mizuno",twitter:"https://x.com/chigiri_mizuno",lit:"https://lit.link/chigirimizuno"},
+{name:"満月まひろ",icon:"https://yt3.googleusercontent.com/5DpG2kRErO2YgJQTeb-FfyPC9MVzpugjiU2dFrI7gpvSDSCg-3zIpnCtNc1COJCjyNcGXUDS=s160-c-k-c0x00ffffff-no-rj",youtube:"https://www.youtube.com/@Mahiro_Mitsuki",twitch:"https://www.twitch.tv/mahiro_mitsuki",twitter:"https://x.com/Mahiro_Mitsuki",lit:"https://lit.link/mitsukimahiro"},
+{name:"夢兎のん",icon:"https://yt3.googleusercontent.com/3fDUnVmU2izP5lHEQo6U0dURh3gUULk32PQ7sNmhlu7evdZkzKsqKB5GZEsRgiE7h5CILllTTg=s160-c-k-c0x00ffffff-no-rj",youtube:"https://www.youtube.com/@yumeto__non",twitch:"",twitter:"https://x.com/yumeto__non",lit:"https://lit.link/yumetonon"},
+{name:"夢中ちょん",icon:"https://yt3.googleusercontent.com/IVvBcopdwHxoFcI5pIZB1Ip5y9k_MoulXNGs73Wom2OF-g2YeWWxAIm2JqmFdk9-laUk_gmO=s160-c-k-c0x00ffffff-no-rj",youtube:"https://www.youtube.com/@Yumenaka_Chon",twitch:"https://www.twitch.tv/yumenakachon",twitter:"https://x.com/yumenaka_chon",lit:"https://lit.link/yumenakachon"},
+{name:"緩瀬ゆに",icon:"https://yt3.googleusercontent.com/jgXe7INxVduyiyPt37vT2Mb_HibLxZHXKZ4oZMAl-yhWrUf2zdQk6enIkXJpxmheGgsOpw8d=s160-c-k-c0x00ffffff-no-rj",youtube:"https://www.youtube.com/@-yuruseyuni-",twitch:"",twitter:"https://x.com/yun1yuruse",lit:"https://lit.link/yuruseyuni"},
+{name:"葉竜らぷる",icon:"https://yt3.googleusercontent.com/FXv2bRJ3mf78w9gvVDyGVs9OiLdoOjxJcuE71voVVYU9hj6Mzya1bUevlbACAJ2ZG4bRflaTK0Y=s160-c-k-c0x00ffffff-no-rj",youtube:"https://www.youtube.com/@YouryuRapuru33",twitch:"https://www.twitch.tv/youryurapuru33",twitter:"https://x.com/youryurapuru33",lit:"https://lit.link/Youryurapuru"},
+{name:"ライザ•フォン・ガルファンゼール16世",icon:"https://yt3.googleusercontent.com/nF7UwczspIv7p0mXSVzdJYCKrRbAwcr-sX7cQFcOg121d87OkyPwvytGYCpka1AVQQvtX26PtQ=s160-c-k-c0x00ffffff-no-rj",youtube:"https://www.youtube.com/@LizaChannel16",twitch:"",twitter:"https://x.com/Liza_16sugoi",lit:""},
+{name:"麗月鏡華",icon:"https://yt3.googleusercontent.com/GT3R1NZaxrS1X4l0Au8bpgfAGXkux9cstTFv3RyZ01IIXiCrZChjw2XeNaoY2L9q58vsH5g_=s160-c-k-c0x00ffffff-no-rj",youtube:"https://www.youtube.com/@Reigetsu_Kyouka",twitch:"https://www.twitch.tv/kyoka0221",twitter:"https://x.com/Reigetsu_Kyouka",lit:""},
 ];
 
 function addCards(id,data){
@@ -230,7 +233,7 @@ function addCards(id,data){
     el.innerHTML+=`
       <div class="card">
         <img src="${m.icon}" data-index="${id}-${i}">
-        <div class="name">${m.name}</div>
+       <div class="name">${m.name.replace(/・/g,"・<br>")}</div>
       </div>`;
   });
 }
@@ -250,9 +253,10 @@ document.body.addEventListener("click",e=>{
     <div class="modal-close-btn" id="c">×</div>
     <img src="${m.icon}">
     <div style="font-weight:bold;margin-bottom:10px;">${m.name}</div>
-    <a class="youtube" href="${m.youtube}" target="_blank">YouTube</a>
-    <a class="twitter" href="${m.twitter}" target="_blank">Twitter</a>
-    ${m.lit?`<a class="lit" href="${m.lit}" target="_blank">Lit.Link</a>`:""}
+${m.youtube?`<a class="youtube" href="${m.youtube}" target="_blank">YouTube</a>`:""}
+${m.twitch?`<a class="twitch" href="${m.twitch}" target="_blank">Twitch</a>`:""}
+${m.twitter?`<a class="twitter" href="${m.twitter}" target="_blank">𝕏</a>`:""}
+${m.lit?`<a class="lit" href="${m.lit}" target="_blank">Lit.Link</a>`:""}
   `;
   overlay.style.display="flex";
   document.getElementById("c").onclick=()=>overlay.style.display="none";
