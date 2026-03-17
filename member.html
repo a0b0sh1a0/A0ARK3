@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
@@ -31,19 +32,6 @@ h2{
   padding:10px;
   font-size:18px;
   background:rgba(0,0,0,0.4);
-}
-
-.about-floating{
-  position:fixed;
-  top:15px;
-  right:15px;
-  background:rgba(0,0,0,0.4);
-  color:#fff;
-  font-size:12px;
-  padding:6px 12px;
-  border-radius:999px;
-  text-decoration:none;
-  z-index:1000;
 }
 
 .container{
@@ -96,7 +84,29 @@ h2{
     -1px  1px 0 #fff,
      1px  1px 0 #fff;
 }
-  
+
+.group-tabs{
+display:flex;
+flex-wrap:wrap;
+gap:6px;
+justify-content:center;
+padding:10px;
+}
+
+.group-tabs button{
+border:none;
+background:rgba(0,0,0,0.5);
+color:#fff;
+padding:6px 12px;
+border-radius:999px;
+cursor:pointer;
+font-size:12px;
+}
+
+.group-tabs button:hover{
+background:#444;
+}
+
 .modal-overlay{
   display:none;
   position:fixed;
@@ -148,6 +158,7 @@ h2{
   cursor:pointer;
 }
 </style>
+
 </head>
 
 <body>
