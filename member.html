@@ -252,43 +252,69 @@ const joinMembers=[
 {name:"麗月鏡華",group:"5",icon:"https://yt3.googleusercontent.com/GT3R1NZaxrS1X4l0Au8bpgfAGXkux9cstTFv3RyZ01IIXiCrZChjw2XeNaoY2L9q58vsH5g_=s160-c-k-c0x00ffffff-no-rj",youtube:"https://www.youtube.com/@Reigetsu_Kyouka",twitch:"https://www.twitch.tv/kyoka0221",twitter:"https://x.com/Reigetsu_Kyouka",lit:""},
 ];
 
-function addCards(id,data){
-  const el=document.getElementById(id);
-  data.forEach((m,i)=>{
-    el.innerHTML+=`
-      <div class="card">
-        <img src="${m.icon}" data-index="${id}-${i}">
-       <div class="name">${m.name.replace(/・/g,"・<br>")}</div>
-      </div>`;
-  });
+let currentMain=[];
+let currentJoin=[];
+
+function addCards(id,data,type){
+const el=document.getElementById(id);
+el.innerHTML="";
+data.forEach((m,i)=>{
+el.innerHTML+=`
+<div class="card">
+<img src="${m.icon}" data-type="${type}" data-index="${i}">
+<div class="name">${m.name.replace(/・/g,"・<br>")}</div>
+</div>`;
+});
 }
 
-addCards("mainList",mainMembers);
-addCards("joinList",joinMembers);
+function filterGroup(group){
+
+if(group==="all"){
+currentMain=[...mainMembers];
+currentJoin=[...joinMembers];
+}else{
+currentMain=mainMembers.filter(m=>m.group===group);
+currentJoin=joinMembers.filter(m=>m.group===group);
+}
+
+addCards("mainList",currentMain,"main");
+addCards("joinList",currentJoin,"join");
+
+}
+
+filterGroup("all");
 
 const overlay=document.getElementById("modalOverlay");
 const box=document.getElementById("modalBox");
 
 document.body.addEventListener("click",e=>{
-  const img=e.target.closest("img[data-index]");
-  if(!img)return;
-  const [group,idx]=img.dataset.index.split("-");
-  const m=(group==="mainList"?mainMembers:joinMembers)[idx];
-  box.innerHTML=`
-    <div class="modal-close-btn" id="c">×</div>
-    <img src="${m.icon}">
-    <div style="font-weight:bold;margin-bottom:10px;">${m.name}</div>
+const img=e.target.closest("img[data-index]");
+if(!img)return;
+
+const type=img.dataset.type;
+const idx=img.dataset.index;
+
+const m=type==="main"
+?currentMain[idx]
+:currentJoin[idx];
+
+box.innerHTML=`
+<div class="modal-close-btn" id="c">×</div>
+<img src="${m.icon}">
+<div style="font-weight:bold;margin-bottom:10px;">${m.name}</div>
 ${m.youtube?`<a class="youtube" href="${m.youtube}" target="_blank">YouTube</a>`:""}
 ${m.twitch?`<a class="twitch" href="${m.twitch}" target="_blank">Twitch</a>`:""}
 ${m.twitter?`<a class="twitter" href="${m.twitter}" target="_blank">𝕏</a>`:""}
 ${m.lit?`<a class="lit" href="${m.lit}" target="_blank">Lit.Link</a>`:""}
-  `;
-  overlay.style.display="flex";
-  document.getElementById("c").onclick=()=>overlay.style.display="none";
+`;
+
+overlay.style.display="flex";
+document.getElementById("c").onclick=()=>overlay.style.display="none";
+
 });
 
 overlay.onclick=e=>{
-  if(e.target===overlay)overlay.style.display="none";
+if(e.target===overlay)overlay.style.display="none";
 };
 
 </script>
